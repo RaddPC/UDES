@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Control de Espacios — UDES</title>
+<title>Mapa de Aulas — Universidad</title>
 <meta name="description" content="Mapa interactivo de estado de aulas: abiertas y cerradas, por edificio y piso.">
 
 <style>
@@ -464,11 +464,11 @@ footer{
       <div class="brand-mark">UNI</div>
       <div>
         <h1 id="siteTitle">Universidad Ejemplo</h1>
-        <p>Mapa de Espacios academicos — estados en vivo</p>
+        <p>Mapa de aulas — estado en vivo</p>
       </div>
     </div>
     <div class="updated">
-      Semestre<br>
+      Última actualización manual<br>
       <b id="lastUpdated">—</b>
     </div>
   </header>
@@ -559,29 +559,29 @@ footer{
    El mapa se construye automáticamente a partir de este arreglo.
 ================================================================= */
 
-const SITE_TITLE = "UDES";
-const LAST_UPDATED = "Agosto - Diciembre 2026";
+const SITE_TITLE = "Universidad Ejemplo";
+const LAST_UPDATED = "06 ago 2026, 8:00 a.m.";
 
 const DATA = [
   {
-    id: "B1-201", nombre: "Guane", edificio: "Bloque 1 — Guane", piso: "Piso 1",
-    tipo: "Aula", capacidad: 22, estado: "abierta",
+    id: "B1-101", nombre: "Aula de Cálculo", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 1",
+    tipo: "Aula", capacidad: 40, estado: "abierta",
     horario: [
       { hora: "07:00 - 09:00", clase: "Cálculo I", docente: "J. Pérez" },
       { hora: "09:00 - 11:00", clase: "Álgebra Lineal", docente: "M. Gómez" }
     ]
   },
   {
-    id: "B1-202", nombre: "Guane", edificio: "Bloque 1 — Guane", piso: "Piso 1",
-    tipo: "Aula", capacidad: 22, estado: "cerrada", horario: []
+    id: "B1-102", nombre: "Aula de Física", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 1",
+    tipo: "Aula", capacidad: 35, estado: "cerrada", horario: []
   },
   {
-    id: "B1-203", nombre: "Guane", edificio: "Bloque 1 — Guane", piso: "Piso 1",
-    tipo: "Laboratorio", capacidad: 22, estado: "abierta",
+    id: "B1-103", nombre: "Laboratorio de Química", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 1",
+    tipo: "Laboratorio", capacidad: 24, estado: "abierta",
     horario: [ { hora: "14:00 - 17:00", clase: "Química General", docente: "L. Ramírez" } ]
   },
   {
-    id: "B1-204", nombre: "Guane", edificio: "Bloque 1 — Guane", piso: "Piso 1",
+    id: "B1-201", nombre: "Aula Múltiple", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 2",
     tipo: "Aula", capacidad: 50, estado: "abierta", horario: []
   },
   {
