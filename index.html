@@ -559,66 +559,90 @@ footer{
    El mapa se construye automáticamente a partir de este arreglo.
 ================================================================= */
 
-const SITE_TITLE = "Universidad Ejemplo";
+const SITE_TITLE = "Universidad — Mapa de Aulas";
 const LAST_UPDATED = "06 ago 2026, 8:00 a.m.";
 
-const DATA = [
-  {
-    id: "B1-101", nombre: "Aula de Cálculo", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 1",
-    tipo: "Aula", capacidad: 40, estado: "abierta",
-    horario: [
-      { hora: "07:00 - 09:00", clase: "Cálculo I", docente: "J. Pérez" },
-      { hora: "09:00 - 11:00", clase: "Álgebra Lineal", docente: "M. Gómez" }
-    ]
-  },
-  {
-    id: "B1-102", nombre: "Aula de Física", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 1",
-    tipo: "Aula", capacidad: 35, estado: "cerrada", horario: []
-  },
-  {
-    id: "B1-103", nombre: "Laboratorio de Química", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 1",
-    tipo: "Laboratorio", capacidad: 24, estado: "abierta",
-    horario: [ { hora: "14:00 - 17:00", clase: "Química General", docente: "L. Ramírez" } ]
-  },
-  {
-    id: "B1-201", nombre: "Aula Múltiple", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 2",
-    tipo: "Aula", capacidad: 50, estado: "abierta", horario: []
-  },
-  {
-    id: "B1-202", nombre: "Sala de Estudio", edificio: "Bloque 1 — Ciencias Básicas", piso: "Piso 2",
-    tipo: "Aula", capacidad: 20, estado: "cerrada", horario: []
-  },
-  {
-    id: "B2-101", nombre: "Sala de Cómputo 1", edificio: "Bloque 2 — Ingeniería", piso: "Piso 1",
-    tipo: "Sala de cómputo", capacidad: 30, estado: "abierta",
-    horario: [ { hora: "08:00 - 10:00", clase: "Programación I", docente: "A. Torres" } ]
-  },
-  {
-    id: "B2-102", nombre: "Sala de Cómputo 2", edificio: "Bloque 2 — Ingeniería", piso: "Piso 1",
-    tipo: "Sala de cómputo", capacidad: 30, estado: "abierta", horario: []
-  },
-  {
-    id: "B2-103", nombre: "Laboratorio de Redes", edificio: "Bloque 2 — Ingeniería", piso: "Piso 1",
-    tipo: "Laboratorio", capacidad: 25, estado: "cerrada", horario: []
-  },
-  {
-    id: "B2-201", nombre: "Auditorio Ingeniería", edificio: "Bloque 2 — Ingeniería", piso: "Piso 2",
-    tipo: "Auditorio", capacidad: 120, estado: "cerrada", horario: []
-  },
-  {
-    id: "B2-202", nombre: "Aula de Proyectos", edificio: "Bloque 2 — Ingeniería", piso: "Piso 2",
-    tipo: "Aula", capacidad: 45, estado: "abierta",
-    horario: [ { hora: "10:00 - 12:00", clase: "Taller de Proyectos", docente: "S. Vega" } ]
-  },
-  {
-    id: "B3-101", nombre: "Aula de Humanidades", edificio: "Bloque 3 — Humanidades", piso: "Piso 1",
-    tipo: "Aula", capacidad: 38, estado: "cerrada", horario: []
-  },
-  {
-    id: "B3-102", nombre: "Sala de Idiomas", edificio: "Bloque 3 — Humanidades", piso: "Piso 1",
-    tipo: "Aula", capacidad: 28, estado: "abierta", horario: []
+/* ----------------------------------------------------------------
+   Pisos en custodia por edificio (informativo, se muestra en el
+   encabezado de cada bloque en el mapa). Edítalo si cambia.
+---------------------------------------------------------------- */
+const CUSTODIA = {
+  "Bloque 1 — Guane":       "Custodia: piso 2 al 4",
+  "Bloque 3 — Arhuaco":     "Custodia: piso 3 al 4",
+  "Bloque 4 — Chibcha":     "Custodia: piso 3 al 6",
+  "Bloque B — Yariguíes":   "Custodia: piso 1 al 5",
+  "Bloque G — Yariguíes":   "Custodia: piso 2"
+};
+
+/* ----------------------------------------------------------------
+   Generador de aulas numeradas consecutivas.
+   Úsalo cuando un piso tiene un rango de códigos tipo 301-306.
+   Cambia SOLO "inicio" y "fin" si el rango cambia.
+---------------------------------------------------------------- */
+function generarAulas({ edificio, piso, prefijo, inicio, fin, nombreBase, tipo, capacidad, estado }){
+  const arr = [];
+  for (let n = inicio; n <= fin; n++){
+    arr.push({
+      id: `${prefijo}-${n}`,
+      nombre: `${nombreBase} ${n}`,
+      edificio, piso, tipo, capacidad, estado,
+      horario: []
+    });
   }
-];
+  return arr;
+}
+
+const DATA = [].concat(
+
+  /* ============ BLOQUE 1 — Edificio Guane ============ */
+  generarAulas({ edificio:"Bloque 1 — Guane", piso:"Piso 2", prefijo:"GUA",
+    inicio:201, fin:204, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque 1 — Guane", piso:"Piso 3", prefijo:"GUA",
+    inicio:301, fin:306, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque 1 — Guane", piso:"Piso 4", prefijo:"GUA",
+    inicio:401, fin:408, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+
+  /* ============ BLOQUE 3 — Edificio Arhuaco ============ */
+  generarAulas({ edificio:"Bloque 3 — Arhuaco", piso:"Piso 3", prefijo:"ARH-AV",
+    inicio:1, fin:9, nombreBase:"Audiovisual", tipo:"Sala audiovisual", capacidad:35, estado:"cerrada" }),
+  [
+    { id:"ARH-AUD-MAYOR", nombre:"Auditorio Mayor", edificio:"Bloque 3 — Arhuaco", piso:"Piso 4",
+      tipo:"Auditorio", capacidad:150, estado:"cerrada", horario:[] },
+    { id:"ARH-AUD-MENOR", nombre:"Auditorio Menor", edificio:"Bloque 3 — Arhuaco", piso:"Piso 4",
+      tipo:"Auditorio", capacidad:80, estado:"cerrada", horario:[] },
+    { id:"ARH-SALA-CONSEJO", nombre:"Sala de Consejo", edificio:"Bloque 3 — Arhuaco", piso:"Piso 4",
+      tipo:"Sala", capacidad:20, estado:"cerrada", horario:[] }
+  ],
+
+  /* ============ BLOQUE 4 — Edificio Chibcha ============ */
+  generarAulas({ edificio:"Bloque 4 — Chibcha", piso:"Piso 3", prefijo:"CHI",
+    inicio:301, fin:309, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque 4 — Chibcha", piso:"Piso 4", prefijo:"CHI",
+    inicio:401, fin:410, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque 4 — Chibcha", piso:"Piso 5", prefijo:"CHI",
+    inicio:501, fin:509, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque 4 — Chibcha", piso:"Piso 6", prefijo:"CHI",
+    inicio:601, fin:610, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+
+  /* ============ BLOQUE B — Edificio Yariguíes ============ */
+  generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 1", prefijo:"YARB",
+    inicio:101, fin:101, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 2", prefijo:"YARB",
+    inicio:201, fin:203, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 3", prefijo:"YARB",
+    inicio:301, fin:303, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 4", prefijo:"YARB",
+    inicio:401, fin:403, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+  generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 5", prefijo:"YARB",
+    inicio:501, fin:503, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+
+  /* ============ BLOQUE G — Edificio Yariguíes ============ */
+  [
+    { id:"YARG-AUDITORIO", nombre:"Auditorio Yariguíes", edificio:"Bloque G — Yariguíes", piso:"Piso 2",
+      tipo:"Auditorio", capacidad:100, estado:"cerrada", horario:[] }
+  ]
+
+);
 
 /* ================================================================
    LÓGICA DE LA APLICACIÓN — normalmente no necesitas editar debajo
@@ -733,13 +757,15 @@ function renderMap(){
     const bTotal = roomsInBuilding.length;
     const bOpen = roomsInBuilding.filter(r => r.estado === "abierta").length;
 
+    const custodia = CUSTODIA[bName] || "";
+
     const bDiv = document.createElement("div");
     bDiv.className = "building";
     bDiv.innerHTML = `
       <div class="building-head">
         <span class="tag">${escapeHtml(bName.split("—")[0].trim())}</span>
         <h2>${escapeHtml(bName)}</h2>
-        <span class="sub">${bOpen}/${bTotal} abiertas</span>
+        <span class="sub">${custodia ? escapeHtml(custodia) + " · " : ""}${bOpen}/${bTotal} abiertas</span>
       </div>
     `;
 
