@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Aulas — Universidad</title>
+<meta name="description" content="Mapa interactivo de estado de aulas: abiertas y cerradas, por edificio y piso.">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <div class="brand-mark">UNI</div>
+      <div>
+        <h1 id="siteTitle">Universidad Ejemplo</h1>
+        <p>Mapa de aulas — estado en vivo</p>
+      </div>
+    </div>
+    <div class="updated">
+      Última actualización manual<br>
+      <b id="lastUpdated">—</b>
+    </div>
+  </header>
+
+  <section class="stats" id="statsBar">
+    <div class="stat"><div class="n" id="statTotal">0</div><div class="l">Aulas totales</div></div>
+    <div class="stat open"><div class="n" id="statOpen">0</div><div class="l">Abiertas</div></div>
+    <div class="stat closed"><div class="n" id="statClosed">0</div><div class="l">Cerradas</div></div>
+    <div class="stat"><div class="n" id="statPct">0%</div><div class="l">Ocupación</div></div>
+  </section>
+
+  <div class="report-bar">
+    <a class="report-btn galileo-btn" href="https://galileo-buc.udes.edu.co/#/" target="_blank" rel="noopener">🏛️ Ingresar a Galileo (cronograma)</a>
+    <button id="btnReporte" class="report-btn">📄 Generar reporte para mi jefe</button>
+  </div>
+
+  <div class="controls">
+    <div>
+      <label for="fBuilding">Edificio</label>
+      <select id="fBuilding"><option value="">Todos</option></select>
+    </div>
+    <div>
+      <label for="fFloor">Piso</label>
+      <select id="fFloor"><option value="">Todos</option></select>
+    </div>
+    <div>
+      <label for="fSearch">Buscar aula</label>
+      <input type="text" id="fSearch" placeholder="Código o nombre…">
+    </div>
+    <div class="status-toggle" role="group" aria-label="Filtrar por estado">
+      <button data-status="" class="active">Todas</button>
+      <button data-status="abierta">Abiertas</button>
+      <button data-status="cerrada">Cerradas</button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="item"><span class="dot open"></span> Aula abierta / encendida</span>
+    <span class="item"><span class="dot closed"></span> Aula cerrada / apagada</span>
+    <span class="item">Clic en una aula para ver el detalle y cambiar su estado</span>
+  </div>
+
+  <main id="map"></main>
+
+  <footer>
+    Datos editables en <code>DATA</code> dentro de este archivo · Estado guardado localmente en este navegador
+  </footer>
+
+</div>
+
+<div class="modal-overlay" id="reportOverlay">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Reporte de estado de aulas</h3>
+      <button class="modal-close" id="reportClose">✕ CERRAR</button>
+    </div>
+    <div class="modal-body">
+      <textarea id="reportText" readonly></textarea>
+    </div>
+    <div class="modal-actions">
+      <button id="btnDescargarPDF" class="primary">📄 1. Descargar PDF</button>
+      <a id="btnWhatsapp" href="#" target="_blank" rel="noopener">💬 2. Abrir chat de WhatsApp</a>
+      <button id="btnCopiar">📋 Copiar texto</button>
+      <button id="btnDescargar">⬇️ Descargar .txt</button>
+      <a id="btnMailto" href="#">✉️ Enviar por correo</a>
+    </div>
+    <p class="modal-note">
+      <b>Para WhatsApp:</b> primero descarga el PDF (botón 1), luego abre el chat (botón 2) y adjunta el archivo que se descargó — ningún navegador permite adjuntar archivos automáticamente por seguridad, pero así evitas escribir o hacer capturas de pantalla.
+    </p>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<aside class="panel" id="panel" aria-hidden="true">
+  <button class="panel-close" id="panelClose">✕ CERRAR</button>
+  <div class="code" id="pCode">—</div>
+  <div class="pname" id="pName">—</div>
+  <span class="badge" id="pBadge">—</span>
+
+  <dl>
+    <div><dt>Edificio</dt><dd id="pBuilding">—</dd></div>
+    <div><dt>Piso</dt><dd id="pFloor">—</dd></div>
+    <div><dt>Tipo</dt><dd id="pType">—</dd></div>
+    <div><dt>Capacidad</dt><dd id="pCapacity">—</dd></div>
+  </dl>
+
+  <div id="pScheduleWrap">
+    <div class="schedule-title">Horario asignado</div>
+    <div id="pSchedule"></div>
+  </div>
+
+  <button class="toggle-btn" id="pToggle"></button>
+  <p class="note">Este botón cambia el estado solo en tu navegador (localStorage). Para que el cambio sea visible para todos, edita el campo <code>estado</code> del aula en el código y vuelve a publicar el sitio.</p>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
