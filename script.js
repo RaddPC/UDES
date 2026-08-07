@@ -56,45 +56,45 @@ const DATA = [].concat(
 
   /* ============ BLOQUE 1 — Edificio Guane ============ */
   generarAulas({ edificio:"Bloque 1 — Guane", piso:"Piso 2", prefijo:"GUA",
-    inicio:201, fin:204, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:201, fin:204, nombreBase:"Aula", tipo:"Aula", capacidad:70, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque 1 — Guane", piso:"Piso 3", prefijo:"GUA",
-    inicio:301, fin:306, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:301, fin:306, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque 1 — Guane", piso:"Piso 4", prefijo:"GUA",
-    inicio:401, fin:408, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:401, fin:408, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
 
   /* ============ BLOQUE 3 — Edificio Arhuaco ============ */
   generarAulas({ edificio:"Bloque 3 — Arhuaco", piso:"Piso 3", prefijo:"ARH-AV",
-    inicio:1, fin:9, nombreBase:"Audiovisual", tipo:"Sala audiovisual", capacidad:35, estado:"cerrada" }),
+    inicio:1, fin:9, nombreBase:"Audiovisual", tipo:"Sala audiovisual", capacidad:24, estado:"cerrada" }),
   [
     { id:"ARH-AUD-MAYOR", nombre:"Auditorio Mayor", edificio:"Bloque 3 — Arhuaco", piso:"Piso 4",
-      tipo:"Auditorio", capacidad:150, estado:"cerrada", horario:[] },
+      tipo:"Auditorio", capacidad:160, estado:"cerrada", horario:[] },
     { id:"ARH-AUD-MENOR", nombre:"Auditorio Menor", edificio:"Bloque 3 — Arhuaco", piso:"Piso 4",
-      tipo:"Auditorio", capacidad:80, estado:"cerrada", horario:[] },
+      tipo:"Auditorio", capacidad:100, estado:"cerrada", horario:[] },
     { id:"ARH-SALA-CONSEJO", nombre:"Sala de Consejo", edificio:"Bloque 3 — Arhuaco", piso:"Piso 4",
       tipo:"Sala", capacidad:20, estado:"cerrada", horario:[] }
   ],
 
   /* ============ BLOQUE 4 — Edificio Chibcha ============ */
   generarAulas({ edificio:"Bloque 4 — Chibcha", piso:"Piso 3", prefijo:"CHI",
-    inicio:301, fin:309, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:301, fin:309, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque 4 — Chibcha", piso:"Piso 4", prefijo:"CHI",
-    inicio:401, fin:410, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:401, fin:410, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque 4 — Chibcha", piso:"Piso 5", prefijo:"CHI",
-    inicio:501, fin:509, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:501, fin:509, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque 4 — Chibcha", piso:"Piso 6", prefijo:"CHI",
-    inicio:601, fin:610, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:601, fin:610, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
 
   /* ============ BLOQUE B — Edificio Yariguíes ============ */
   generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 1", prefijo:"YARB",
-    inicio:101, fin:101, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:101, fin:101, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 2", prefijo:"YARB",
-    inicio:201, fin:203, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:201, fin:203, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 3", prefijo:"YARB",
-    inicio:301, fin:303, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:301, fin:303, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 4", prefijo:"YARB",
-    inicio:401, fin:403, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:401, fin:403, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
   generarAulas({ edificio:"Bloque B — Yariguíes", piso:"Piso 5", prefijo:"YARB",
-    inicio:501, fin:503, nombreBase:"Aula", tipo:"Aula", capacidad:40, estado:"cerrada" }),
+    inicio:501, fin:503, nombreBase:"Aula", tipo:"Aula", capacidad:35, estado:"cerrada" }),
 
   /* ============ BLOQUE G — Edificio Yariguíes ============ */
   [
@@ -112,9 +112,9 @@ const DATA = [].concat(
    CONFIGURACIÓN DEL REPORTE — edita esto con los datos reales
 ---------------------------------------------------------------- */
 const REPORTE_CONFIG = {
-  correoJefe: "jefe@correo.com",           // destinatario del correo
-  telefonoWhatsapp: "573000000000",        // con código de país, sin "+", sin espacios
-  nombreResponsable: "Tu nombre"           // aparece al final del reporte
+  correoJefe: "logistica@udes.edu.co",           // destinatario del correo
+  telefonoWhatsapp: "573156422898",        // con código de país, sin "+", sin espacios
+  nombreResponsable: "Juan Tobon - Julian Torres"           // aparece al final del reporte
 };
 
 const STORAGE_KEY = "aulas_estado_v1";
