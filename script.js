@@ -373,7 +373,7 @@ function construirTextoReporte(){
   const cerradas = total - abiertas;
 
   let out = "";
-  out += "REPORTE DE ESTADO DE AULAS\n";
+  out += "REPORTE DE ESPACIOS ACADEMICOS\n";
   out += SITE_TITLE + "\n";
   out += "Generado: " + fechaHoraActual() + "\n";
   out += "----------------------------------------\n\n";
@@ -508,7 +508,7 @@ function generarPDF(){
   const abiertas = rooms.filter(r => r.estado === "abierta").length;
   const cerradas = total - abiertas;
 
-  linea("Reporte de estado de aulas", { size: 17, style: "bold", alto: 22 });
+  linea("Reporte de espacios academicos", { size: 17, style: "bold", alto: 22 });
   linea(SITE_TITLE, { size: 10, color: [90,90,90], alto: 14 });
   linea("Generado: " + fechaHoraActual(), { size: 10, color: [90,90,90], alto: 20 });
 
